@@ -12,8 +12,8 @@ def index_page(request):
 def home(request):
     images = services.getAllImages()
     favourite_list = []
-
-    return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
+    colorTipo={"agua":"border-primary","planta":"border-success","fuego":"border-danger"}
+    return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list, "colorTipo":colorTipo })
 
 # función utilizada en el buscador.
 def search(request):
