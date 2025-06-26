@@ -10,9 +10,9 @@ def index_page(request):
 
 # esta función obtiene 2 listados: uno de las imágenes de la API y otro de favoritos, ambos en formato Card, y los dibuja en el template 'home.html'.
 def home(request):
-    images = services.getAllImages()
-    favourite_list = []
-    colorTipo={"agua":"border-primary","planta":"border-success","fuego":"border-danger"}
+    images = services.getAllImages() #Me devuelve las imagenes en forma de cartas.
+    favourite_list = [] #No lo arme.
+    colorTipo={"agua":"border-primary","planta":"border-success","fuego":"border-danger"} #Intengo de diccionario para el punto 3.
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list, "colorTipo":colorTipo })
 
 # función utilizada en el buscador.
