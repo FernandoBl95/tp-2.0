@@ -7,7 +7,7 @@
         <form class="d-flex" action="{% url 'buscar' %}" method="POST">
             {% csrf_token %}
             <input class="form-control me-2" type="search" name="query" placeholder="Pikachu, Charizard, Ditto" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
+            <button onclick="mostrarSpinner()" class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
     </div>
 
@@ -15,22 +15,22 @@
         <form method="post" action="{% url 'filter_by_type' %}">
             {% csrf_token %}
             <input type="hidden" name="type" value="fire">
-            <button type="submit" class="btn btn-danger">FUEGO</button>
+            <button onclick="mostrarSpinner()" type="submit" class="btn btn-danger">FUEGO</button>
         </form>
 
         <form method="post" action="{% url 'filter_by_type' %}">
             {% csrf_token %}
             <input type="hidden" name="type" value="water">
-            <button type="submit" class="btn btn-primary">AGUA</button>
+            <button onclick="mostrarSpinner()" type="submit" class="btn btn-primary">AGUA</button>
         </form>
 
         <form method="post" action="{% url 'filter_by_type' %}">
             {% csrf_token %}
             <input type="hidden" name="type" value="grass">
-            <button type="submit" class="btn btn-success">PLANTA</button>
+            <button onclick="mostrarSpinner()" type="submit" class="btn btn-success">PLANTA</button>
         </form>
     </div>
-
+        <div id="spinner" class="spinner" style="display: none;"></div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
         {% if images|length == 0 %}
         <h2 class="text-center">La búsqueda no arrojó resultados...</h2>
@@ -80,3 +80,33 @@
     </div>
 </main>
 {% endblock %}
+<style>
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #ccc;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+</style>
+<script>
+function mostrarSpinner() {
+  document.getElementById('spinner').style.display = 'block';
+}
+
+function ocultarSpinner() {
+  document.getElementById('spinner').style.display = 'none';
+}
+</script>
